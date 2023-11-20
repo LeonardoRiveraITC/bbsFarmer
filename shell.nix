@@ -1,17 +1,12 @@
-{pkgs? import<nixpkgs>{}}:
-let 
-py = with pkgs; [
-   (python38.withPackages(ps: with ps; [ keyboard pyautogui xlib]))
-  ];
-in 
-pkgs.mkShell{
-    name="auopy devenv"; 
-    packages=[
-        py
+{ pkgs ? import <nixpkgs> {} }:
+pkgs.mkShell {
+  name = "pipzone";
+  packages =[
+        pkgs.python310
+        pkgs.python310Packages.keyboard
+        pkgs.python310Packages.opencv3
+        pkgs.python310Packages.pyautogui
+        pkgs.python310Packages.tkinter
         pkgs.scrot
-    ];
-    shellHook=''
-       echo "Entorno de desarrollo listo" 
-    '';
+  ];
 }
-
